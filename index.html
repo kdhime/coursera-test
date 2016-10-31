@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="myFirstApp">
+<html ng-app="LunchApp">
   <head>
     <meta charset="utf-8">
     <script src="angular.min.js"></script>
@@ -8,9 +8,12 @@
   </head>
   <body>
     <h1>My First Angular Applications</h1>
-<div ng-controller="MyFirstControllers">
-Message is: <br>
-{{name}}
+<div ng-controller="LunchCheckController">
+<input type="text" name="name" ng-model="numberOfItems" ng-keyup="removeBlankElem();">
+<input type="button" value="Check if Too Much" ng-click="checkForItems();">
+<br>
+{{message}}<br>
+{{elemRemoval}}
 </div>
   </body>
 </html>

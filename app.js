@@ -1,13 +1,44 @@
 (function () {
   'use strict';
 
-  angular.module('myFirstApp',[])
-  .controller('MyFirstControllers',MyFirstControllert);
+  angular.module('LunchApp',[])
+  .controller('LunchCheckController',LunchCheckController).filter('emptyFilter', function() {
+    return function(array) {
+      console.log(array);
+      var filteredArray = array.split(",");
+        angular.forEach(array, function(item) {
+          if (item) filteredArray.push(item);
+        });
+      return filteredArray.toString();
+    };
+  });
 
-   MyFirstControllert.$inject=['$scope'];
-   function MyFirstControllert($scope)
+   LunchCheckController.$inject=['$scope','$filter'];
+   function LunchCheckController($scope,$filter)
    {
-     $scope.name="Hello World";
+     $scope.numberOfItems="";
+     $scope.checkForItems=function()
+     {
+      var name=$scope.numberOfItems;
+       var elem=name.split(",");
+       if (elem=='') {
+         $scope.message='Please enter the data first';
+       }
+       else if(elem.length<=3 && elem.length!=0)
+       {
+       $scope.message='Enjoy!';
+       }
+       else if (elem.length>=3) {
+         $scope.message='Too much!';
+       }
+     };
+
+    // $scope.removedItems=emptyFilter($scope.numberOfItems);
+     $scope.removeBlankElem=function()
+     {
+       var removeBlankElemFun=$filter('emptyFilter');
+       $scope.elemRemoval=removeBlankElemFun($scope.name);
+           }
    }
 })();
 
