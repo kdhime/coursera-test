@@ -22,7 +22,7 @@
       var name=$scope.numberOfItems;
        var elem=name.split(",");
        if (elem=='') {
-         $scope.message='Please enter the data first';
+         $scope.message='Please enter the data first..pleasse';
        }
        else if(elem.length<=3 && elem.length!=0)
        {
